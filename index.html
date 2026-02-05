@@ -139,7 +139,11 @@ function unlock() {
 }
 
 function typeWriter() {
-  document.getElementById("tiamo").innerHTML = "TEST";
+  if (i < text.length) {
+    document.getElementById("tiamo").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 150);
+  }
 }
 
 
