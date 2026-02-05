@@ -130,10 +130,10 @@ function unlock() {
   if (document.getElementById("pwd").value === PASSWORD) {
     document.getElementById("lock").style.display = "none";
     document.getElementById("content").classList.remove("hidden");
-    document.getElementById("music").play();
     navigator.vibrate(200);
     createHearts();
     setTimeout(typeWriter, 9000);
+    document.getElementById("music").play();
   } else {
     alert("Password sbagliata 💔");
   }
