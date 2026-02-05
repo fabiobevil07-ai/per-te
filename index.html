@@ -140,12 +140,9 @@ function unlock() {
 }
 
 function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("tiamo").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 150);
-  }
+  document.getElementById("tiamo").innerHTML = "TEST";
 }
+
 
 function createHearts() {
   setInterval(() => {
