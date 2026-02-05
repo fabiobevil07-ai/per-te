@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Per Te ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: bg 20s infinite alternate;
+}
+
+@keyframes bg {
+  0% { background: #f8b3c8; }
+  50% { background: #f6a6c1; }
+  100% { background: #f9c5d1; }
+}
+
+.card {
+  background: #ffe4ec;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 85%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.hidden { display: none; }
+
+.line {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+#tiamo {
+  font-size: 36px;
+  color: crimson;
+  font-family: cursive;
+  margin-top: 15px;
+}
+
+/* CUORI */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* LOCK */
+#lock {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #f8b3c8, #f6a6c1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+input, button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+button {
+  background: crimson;
+  color: white;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="lock">
+  <div class="card">
+    <h2>🔒 Inserisci la password</h2>
+    <input type="password" id="pwd">
+    <br>
+    <button onclick="unlock()">Entra ❤️</button>
+  </div>
+</div>
+
+<!-- MUSICA -->
+<audio id="music" loop>
+  <!-- QUI METTERAI IL FILE -->
+  <source src="il_cielo_in_una_stanza.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CONTENUTO -->
+<div class="card hidden" id="content">
+  <h2>Giulia ❤️</h2>
+
+  <p class="line" style="animation-delay:1s">Sono fiero di te…</p>
+  <p class="line" style="animation-delay:4s">
+    ti amo infinitamente<br>
+    sei la mia vita e sei tutto quello che ho
+  </p>
+  <p class="line" style="animation-delay:7s">
+    non te ne andare mai
+  </p>
+
+  <div id="tiamo"></div>
+</div>
+
+<script>
+const PASSWORD = "tiamo";
+const text = "Ti Amo ❤️";
+let i = 0;
+
+function unlock() {
+  if (document.getElementById("pwd").value === PASSWORD) {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("content").classList.remove("hidden");
+    document.getElementById("music").play();
+    navigator.vibrate(200);
+    createHearts();
+    setTimeout(typeWriter, 9000);
+  } else {
+    alert("Password sbagliata 💔");
+  }
+}
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("tiamo").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 150);
+  }
+}
+
+function createHearts() {
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 8000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
