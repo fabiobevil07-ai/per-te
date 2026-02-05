@@ -92,7 +92,7 @@ button {
 <!-- PASSWORD -->
 <div id="lock">
   <div class="card">
-    <h2>🔒 Inserisci la passwordd</h2>
+    <h2>🔒 Inserisci la password</h2>
     <input type="password" id="pwd">
     <br>
     <button onclick="unlock()">Entra ❤️</button>
@@ -100,7 +100,7 @@ button {
 </div>
 
 <!-- MUSICA -->
-<audio id="music" loop>
+<audio id="music" loop playsinline>
   <!-- QUI METTERAI IL FILE -->
   <source src="il_cielo_in_una_stanza.mp3" type="audio/mpeg">
 </audio>
@@ -130,10 +130,10 @@ function unlock() {
   if (document.getElementById("pwd").value === PASSWORD) {
     document.getElementById("lock").style.display = "none";
     document.getElementById("content").classList.remove("hidden");
+    document.getElementById("music").play();
     navigator.vibrate(200);
     createHearts();
     setTimeout(typeWriter, 9000);
-    document.getElementById("music").play();
   } else {
     alert("Password sbagliata 💔");
   }
